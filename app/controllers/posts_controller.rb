@@ -9,6 +9,14 @@ class PostsController < ApplicationController
 	end
 
 	def create
+		@post = Post.new
+		if @post.save(post_params)
+			flash[:notice] = "Post 202."
+			redirect_to post_path(@post)
+		else
+			flash[:alert] = "Post 404."
+			render :new
+		end
 	end
 
 	def edit
