@@ -22,6 +22,16 @@ class PostsController < ApplicationController
 	def edit
 	end
 
+	def update
+		if @post.update_attributes(post_params)
+			flash[:notice] = "Post Update 202."
+			redirect_to post_path(@posts)
+		else
+			flash[:alert] = "Post Update 404."
+			render :edit
+		end
+	end
+
 	def show
 	end
 
