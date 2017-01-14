@@ -36,7 +36,15 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
+		if @post.destroy
+			flash[:notice] = "Post delete 202."
+			redirect_to posts_path
+		else
+			flash[:alert] = "Post delete 404."
+		end
 	end
+
+	private
 
 	def post_params
 		params.require(:post).permit(:title, :body)
